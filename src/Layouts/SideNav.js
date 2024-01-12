@@ -33,7 +33,7 @@ function SideNav({ sendDataToLayout }) {
  const  location = useLocation();
  const{pathname} = location;
  const splitLocation = pathname.split('/')
- console.log(splitLocation);
+//  console.log(splitLocation);
  const changeNumber = (value)=>{
   setNumber(value);
  }

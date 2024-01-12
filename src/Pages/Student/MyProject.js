@@ -41,6 +41,9 @@ function MyProject(props) {
   const yourData = location.state && location.state.ProjectId;
   myData = yourData;
   const roleId = location.state && location.state.roleID;
+  let x;
+  const xtemp = location.state && location.state.xtemp;
+        x =xtemp;
   //  console.log(roleValue);
   // / Set userID based on role
   let userI;
@@ -48,13 +51,16 @@ function MyProject(props) {
     userI = admissionNumber && admissionNumber.data[0].AdmissionNumber;
   } else if (sessionStorage.getItem("role") === "Teacher") {
     userI = myData;
-  }else if(sessionStorage.getItem("role")==="Admin")
+  }else if(sessionStorage.getItem("role")==="Admin" && x!=='pData')
   {
 
-      console.log("the llocation value is",temp);
+      // console.log("the llocation value is",temp);
       userI = temp;
   }
-  console.log(userI);
+  else{
+    userI = myData;
+  }
+  // console.log(userI);
   useEffect(() => {
     // Access the passed data
 
@@ -64,7 +70,10 @@ function MyProject(props) {
         const response = await axios.get(
           `https://online-pms-backend.onrender.com/projects/pdSpecific/?userID=${userI}&role=${sessionStorage.getItem(
             "role"
-          )}`
+          )}`,{
+            params: { xData: x },
+            // Other options like headers can be added here
+          }
         );
         setprojectData(response.data.data);
       } catch (error) {
@@ -100,7 +109,10 @@ function MyProject(props) {
       const updatedProjectData = await axios.get(
         `https://online-pms-backend.onrender.com/projects/pdSpecific/?userID=${userI}&role=${sessionStorage.getItem(
           "role"
-        )}`
+        )}`,{
+          params: { xData: x },
+          // Other options like headers can be added here
+        }
       );
       setprojectData(updatedProjectData.data.data);
 
@@ -116,7 +128,10 @@ function MyProject(props) {
       const updatedProjectData = await axios.get(
         `https://online-pms-backend.onrender.com/projects/pdSpecific/?userID=${userI}&role=${sessionStorage.getItem(
           "role"
-        )}`
+        )}`,{
+          params: { xData: x },
+          // Other options like headers can be added here
+        }
       );
 
       setaddClick(0);
@@ -131,7 +146,10 @@ function MyProject(props) {
         const updatedProjectData = await axios.get(
           `https://online-pms-backend.onrender.com/projects/pdSpecific/?userID=${userID}&role=${sessionStorage.getItem(
             "role"
-          )}`
+          )}`,{
+            params: { xData: x },
+            // Other options like headers can be added here
+          }
         );
   
         setprojectData(updatedProjectData.data.data);

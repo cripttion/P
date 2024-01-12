@@ -1,18 +1,23 @@
-import { ViewIcon } from 'lucide-react';
+import { ViewIcon, X } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Projectdata from '../../Admin/Projectdata';
+import { useToast } from 'react-toastify';
 function DocumentStatus(props) {
   const [data,setData] = useState();
    
 
-  
+  let x='';
   useEffect(()=>{
     const getProjectData = async () => {
       try {
         const response = await axios.get(
           `https://online-pms-backend.onrender.com/projects/pdSpecific/?userID=${props.projectId}&role=${sessionStorage.getItem(
             "role"
-          )}`
+          )}`,{
+            params: { xData: 'pData' },
+            // Other options like headers can be added here
+          }
         );
         try{
           const response1 = await axios.get(`https://online-pms-backend.onrender.com/projects/documentDetails/${response.data.data[0].ProjectID}`)
@@ -38,9 +43,23 @@ function DocumentStatus(props) {
   const onViewFile=(value)=>{
     window.open(value, '_blank', 'noreferrer');
   }
+const [openAb,setopenAb] = useState(false);
+  const openAbstract =()=>{
+     setopenAb(!openAb);
+  }
   // console.log(data);
   return (
-    <div className='mt-10 mx-10'>
+    <div className='mt-10 mx-10 relative'>
+      
+     {openAb && <div className='absolute -top-96 w-full h-fit bg-white upCard p-5 ' style={{width:'100%',height:'fit-content'}}>
+     <div className='relative flex flex-col gap-10 justify-center items-center'>
+      <h1 className='text-3xl font-bold'>{data&&data[0].ProjectTitle}</h1>
+      <div className='bg-gray-400 w-full' style={{height:'1px'}}> </div>
+      <p>{data&&data[0].ProjectAbstract}</p>
+      </div>
+      <button className='absolute top-5 right-2' onClick={openAbstract}><X /></button>
+      </div>
+     }
       <table className="min-w-full bg-cardColor shadow-md  rounded-md overflow-hidden">
         <thead className="bg-color1 text-black">
           <tr>
@@ -67,7 +86,7 @@ function DocumentStatus(props) {
             <td className="py-2 px-4">2.</td>
             <td className="py-2 px-4">Abstract</td>
             <td className="py-2 px-4">
-               <button className='bg-green-500 p-2 rounded-full text-white flex flex-row gap-2 items-center justify-center' title='View' ><ViewIcon color='white' /></button>
+               <button className='bg-green-500 p-2 rounded-full text-white flex flex-row gap-2 items-center justify-center' title='View' onClick={openAbstract} ><ViewIcon color='white' /></button>
             </td>
             <td className="py-2 px-4">
             {data&&data.length>0&&data[0].ProjectAbstract ==='Not uploaded'?'Not uploaded':'uploaded'}

@@ -19,7 +19,7 @@ function Topnav() {
   const handleLogout=()=>{
       navigate('/',{replace:true})
   }
- console.log(user);
+//  console.log(user);
   return (
     <div className='relative'>
     <div className='flex flex-row hidden md:inline-flex lg:inline-flex justify-between bg-bgBlue border-b border-white p-2 text-textColor1 items-center w-full'>
