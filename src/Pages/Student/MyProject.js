@@ -34,6 +34,10 @@ function MyProject(props) {
   const [studentData, setStudentData] = useState();
   let myData;
   const [userID, setUserID] = useState();
+  let temp;
+  if(sessionStorage.getItem("role")==="Admin"){
+        temp = location.state && location.state.userI;
+        }
   const yourData = location.state && location.state.ProjectId;
   myData = yourData;
   const roleId = location.state && location.state.roleID;
@@ -44,6 +48,11 @@ function MyProject(props) {
     userI = admissionNumber && admissionNumber.data[0].AdmissionNumber;
   } else if (sessionStorage.getItem("role") === "Teacher") {
     userI = myData;
+  }else if(sessionStorage.getItem("role")==="Admin")
+  {
+
+      console.log("the llocation value is",temp);
+      userI = temp;
   }
   console.log(userI);
   useEffect(() => {

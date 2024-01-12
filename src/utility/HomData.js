@@ -9,7 +9,7 @@ const homeData = [
     {src: teacher, title: 'Add teacher', toRoute: '/a/addTeacher',category:['Admin'],relatedTo:['Teacher']},
     {src: teacher2, title: 'Update Teacher Data', toRoute: '/s/addStudeent',category:['Admin'],relatedTo:['Teacher']},
     {src: project, title: 'Create Project Group', toRoute: '/project/createProject',category:['Admin','Student','Guide'],relatedTo:['Projects']},
-    {src: student, title: 'Projects Groups', toRoute: '/s/addStudeent',category:['Admin'],relatedTo:['Projects']},
+    {src: student, title: 'Projects Data', toRoute: '/projects/projectData',category:['Admin'],relatedTo:['Projects']},
     {src: student, title: 'Research papers', toRoute: '/s/addStudeent',category:['Admin'],relatedTo:['Projects']},
     {src: teacher2, title: 'Allocate Guide', toRoute: '/s/addStudeent',category:['Admin'],relatedTo:['Guide']},
     {src: teacher, title: 'Allocate Reviewer', toRoute: '/s/addStudeent',category:['Admin'],relatedTo:['Reviewer']},

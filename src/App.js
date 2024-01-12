@@ -12,6 +12,7 @@ import ProjectToReview from './Pages/Teacher/ProjectToReview';
 import MyGuide from './Pages/Student/MyGuide';
 import MyReviewer from './Pages/Student/MyReviewer';
 import PageNotFound from './Pages/PageNotFound';
+import Projectdata from './Pages/Admin/Projectdata';
 
 const isAuthenticated = () => {
   const loginStatus = localStorage.getItem('isLogedIn');
@@ -57,6 +58,8 @@ const App = () => {
         <Route path="/r/allProjects" element={<PrivateRoute element={<ProjectToReview />} requiredRoles={['Admin', 'Teacher']} />} />
         <Route path="/projects/myguide" element={<PrivateRoute element={<MyGuide />} requiredRoles={['Student']} />} />
         <Route path="/projects/myreviewer" element={<PrivateRoute element={<MyReviewer />} requiredRoles={['Student']} />} />
+        <Route path="/projects/projectData" element={<PrivateRoute element={<Projectdata />} requiredRoles={['Admin']} />} />
+
        {/* Temproty route000 */}
        <Route path="/Shome" element={<PrivateRoute element={<Home />} requiredRoles={['Admin']} />} />
        <Route path="/Thome" element={<PrivateRoute element={<Home />} requiredRoles={['Admin']} />} />

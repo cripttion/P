@@ -45,7 +45,7 @@ const CreateProject = () => {
       if(response.status===200)
       {
         toast.success('Group created Successfully!');   
-        navigate('/projects/myProject',{replace:true});
+        navigate('/projects/myProject',{ state: {userI: admissionNumber} });
     }
     } catch (error) {
       if(error.response.status===501)
@@ -101,12 +101,12 @@ const[studentData,setStudentData] = useState([]);
     if (!isYearSelected) {
       setSelectedSemester(0);
     }
-  
+  getData();
     // Disable "Create Group" button if either year or semester is not selected
     setIsCreateGroupDisabled(!isYearSelected || selectedSemester === 0);
   
   }, [selectedYear, selectedSemester]);
-
+console.log(studentData);
 
   return (
     <Layouts >
